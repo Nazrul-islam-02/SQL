@@ -1,0 +1,3 @@
+select * from Customers
+inner Join orders
+on id = customer_Id
