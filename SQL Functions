@@ -1,0 +1,51 @@
+SQL Function হলো এমন একটি reusable database object যেটা input নেয়,
+processing করে, এবং একটা value বা table return করে। 
+এটা মূলত query কে clean, 
+reusable এবং powerful করে তোলে।
+
+1️⃣ Scalar Function
+CREATE FUNCTION GetSquare(@num INT)
+RETURNS INT
+AS
+BEGIN
+    RETURN @num * @num
+END
+
+-------Call process
+SELECT dbo.GetSquare(5) AS Result;
+
+
+2️⃣ Table-Valued Function (TVF)
+👉 একটা table return কর
+
+
+
+----- Use EshopDB
+also Use-----Customer Table
+
+
+Create Function GetFullName()
+returns Table
+as
+return(
+select FirstName + ' ' + LastName as fullName
+from Customers
+)
+select *from dbo.GetfullName()
+
+
+-----02--যে সব কাস্টমার বাংলাদেশে থাকে তাদের বের করো?
+create Function GetCountryByCustomer(@country varChar(50) )
+returns table
+as 
+return(
+  select *from Customers
+  where Country = @country
+)
+
+---কল করা হয়েছে
+select * from dbo.GetCountryByCustomer('Bangladesh')
+
+
+
+
