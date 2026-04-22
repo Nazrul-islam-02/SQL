@@ -1,1 +1,66 @@
 
+Join কী?
+Join = একাধিক টেবিলের data combine করা
+
+👉 ধরো:
+Customers (customer info)
+Orders (order info)
+
+👉 যদি জানতে চাও:
+➡️ কোন customer কোন order করেছে
+➡️ তখন JOIN দরকার
+
+
+INNER JOIN (সবচেয়ে গুরুত্বপূর্ণ)
+👉 Common data only return করে
+
+
+----Structured of Inner Joins----
+SELECT 
+c.FirstName,
+o.Product
+FROM Customers c
+INNER JOIN Orders o
+ON c.Id = o.CustomerId;
+
+
+LEFT JOIN (Left table priority)
+👉 Left table এর সব data + matching right
+
+
+----Structured of left Joins----
+SELECT 
+c.FirstName, 
+o.Product
+FROM Customers c
+LEFT JOIN Orders o
+ON c.Id = o.CustomerId;
+
+
+RIGHT JOIN
+👉 Right table এর সব data + matching left
+
+
+----Structured of Right Joins----
+SELECT 
+c.FirstName,
+o.Product
+FROM Customers c
+RIGHT JOIN Orders o
+ON c.Id = o.CustomerId;
+
+
+
+FULL JOIN
+👉 দুই টেবিলের সব data
+
+
+
+----Structured of Full Joins----
+SELECT 
+c.FirstName, 
+o.Product
+FROM Customers c
+FULL JOIN Orders o
+ON c.Id = o.CustomerId;
+
