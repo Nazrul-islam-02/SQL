@@ -1,1 +1,67 @@
 
+🔥 Set Operator কি?
+👉 SQL-এ দুই বা ততোধিক SELECT statement এর result combine করার জন্য Set Operator ব্যবহার করা হয়
+🔹 SQL Set Operators
+UNION
+UNION ALL
+INTERSECT
+EXCEPT (SQL Server এ থাকে)
+
+
+
+🔥 1. UNION
+
+👉 দুইটা result combine করে
+👉 duplicate remove করে ✔
+
+SELECT CustomerId FROM Orders
+UNION
+SELECT CustomerId FROM Customers;
+
+
+📌 Result:
+
+unique value only
+🔥 2. UNION ALL
+
+👉 সব data রাখে
+👉 duplicate সহ ✔
+
+SELECT CustomerId FROM Orders
+UNION ALL
+SELECT CustomerId FROM Customers;
+
+
+📌 Result:
+
+fast
+duplicates allowed
+🔥 3. INTERSECT
+
+👉 দুইটা result এর common value দেয় ✔
+
+SELECT CustomerId FROM Orders
+INTERSECT
+SELECT CustomerId FROM Customers;
+
+
+📌 Result:
+
+যেগুলো দুই table-এ আছে
+🔥 4. EXCEPT
+
+👉 প্রথম table এ আছে কিন্তু দ্বিতীয়তে নাই ❌
+
+SELECT CustomerId FROM Customers
+EXCEPT
+SELECT CustomerId FROM Orders;
+
+
+📌 Result:
+
+only Customers without Orders
+🔹 Important Rules ⚠️
+
+✔ Same number of columns
+✔ Same data type
+✔ Column order must match
