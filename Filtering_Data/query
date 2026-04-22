@@ -1,0 +1,121 @@
+
+USE EshopBD 
+
+
+CREATE TABLE Customers (
+    Id INT PRIMARY KEY IDENTITY(1,1),
+    FirstName VARCHAR(50),
+    LastName VARCHAR(50),
+    MiddleName VARCHAR(50),
+    Age INT,
+    Salary DECIMAL(10,2),
+    Country VARCHAR(50),
+    Score INT,
+    Gender VARCHAR(10)
+);
+
+
+
+INSERT INTO Customers (FirstName, LastName, MiddleName, Age, Salary, Country, Score, Gender)
+VALUES 
+('Rahim', 'Uddin', 'M', 25, 30000, 'Bangladesh', 80, 'Male'),
+('Karim', 'Hossain', 'A', 30, 45000, 'Bangladesh', 75, 'Male'),
+('Ayesha', 'Begum', 'K', 22, 28000, 'Bangladesh', 85, 'Female'),
+('Fatema', 'Khatun', 'R', 27, 35000, 'Bangladesh', 90, 'Female'),
+('John', 'Doe', 'L', 35, 60000, 'USA', 70, 'Male'),
+('Jane', 'Smith', 'P', 29, 52000, 'UK', 88, 'Female'),
+('Ali', 'Khan', 'Z', 40, 70000, 'Pakistan', 65, 'Male'),
+('Sara', 'Ahmed', 'T', 26, 32000, 'UAE', 92, 'Female'),
+('David', 'Lee', 'J', 33, 55000, 'Canada', 78, 'Male'),
+('Maria', 'Garcia', 'S', 31, 48000, 'Spain', 83, 'Female');
+
+
+
+--01--Retrive All Customers in Germany
+Select * From Customers
+Where Country = 'Bangladesh'
+
+
+
+--02--Retrive All Customers who are not from Germany
+Select * Customers
+where Country != 'Bangladesh'
+
+--03-- Retrive all Customers With a score greater than 80
+select * from Customers
+Where Score > 80
+
+
+--04-- Retrive all Customers With a score of 80 or more
+select * from Customers
+Where Score >= 80
+
+--05-- Retrive all Customers With a score lesss than 80
+select * from Customers
+Where Score < 80
+
+
+--06-- Retrive all Customers With a score of 80 or less
+select * from Customers
+Where Score <= 80
+
+
+
+--------Logical Operator--------
+and:
+all condition must be true
+
+----01-- Retrive all customers who lives in bangladesh and Have a Score greader then 80
+select * from customers 
+where country = 'bangladesh' and Score > 80
+
+------OR operator--
+Only one condition true than 
+
+---02--- Retrive all customers who are either ffrom Bangladesh Or have a score greater then 80
+
+select *from Customers
+where Country = 'Bangladesh' Or Score > 80
+
+
+-----Not operator----
+---01--Retrive all customers with a score not less then 80
+select *
+from Customers
+where not score < 80
+
+
+
+---between operator---
+---01--Retrive all customers whose score falls in the range between 50 and 70
+select *
+from Customers
+where score between 50 and 70
+-- বিকল্প--
+select *
+from Customers
+where score >= 50 and score <= 70
+
+
+
+---- Member Ship Operator---
+IN
+check if a value exists in a list
+
+
+----01---Retrive all customers from either Bangladesh or UK
+select *
+from Customers
+where country in( 'UK','Bangladesh')
+
+
+
+
+
+
+
+
+
+
+
+
