@@ -109,6 +109,28 @@ from Customers
 where country in( 'UK','Bangladesh')
 
 
+----like-operator--
+Search for a pattern in a text
+
+---01--Find all customers whose FirstName start with 'R'
+select *
+from Customers
+where FirstName like 'R%' 
+
+---02--Find all customers whose FirstName contains  'R'
+select *
+from Customers
+where FirstName like '%R%' 
+
+
+---03--Find all customers whose FirstName has 'R' in the position 3rd
+select *
+from Customers
+where FirstName like '__R%' 
+
+
+
+
 
 
 
