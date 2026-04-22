@@ -164,9 +164,11 @@ WHERE c.Id IS NULL
 
 
 
-
-
-
+-------------CROSS JOIN কি?
+👉 দুই টেবিলের সব possible combination (cartesian product) তৈরি করে
+SELECT *
+FROM Customers c
+CROSS JOIN Orders o;
 
 
 
