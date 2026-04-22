@@ -1,6 +1,93 @@
+Use Eshop
 
---- simple Inner Join
+
+--------orders Table------
+CREATE TABLE Orders (
+    OrderId INT PRIMARY KEY,
+    CustomerId INT,
+    OrderDate DATE,
+    Sales DECIMAL(10,2)
+);
+INSERT INTO Orders (OrderId, CustomerId, OrderDate, Sales) VALUES
+(1, 1, '2024-01-10', 500.00),
+(2, 2, '2024-01-12', 750.50),
+(3, 3, '2024-01-15', 300.25),
+(4, 1, '2024-01-18', 1200.00),
+(5, 4, '2024-01-20', 950.75),
+(6, 2, '2024-01-22', 400.00),
+(7, 5, '2024-01-25', 650.30),
+(8, 3, '2024-01-28', 1100.90);
+
+----- Customers Table---------
+CREATE TABLE Customers (
+    Id INT PRIMARY KEY IDENTITY(1,1),
+    FirstName VARCHAR(50),
+    LastName VARCHAR(50),
+    MiddleName VARCHAR(50),
+    Age INT,
+    Salary DECIMAL(10,2),
+    Country VARCHAR(50),
+    Score INT,
+    Gender VARCHAR(10)
+);
+
+INSERT INTO Customers (FirstName, LastName, MiddleName, Age, Salary, Country, Score, Gender)
+VALUES 
+('Rahim', 'Uddin', 'M', 25, 30000, 'Bangladesh', 80, 'Male'),
+('Karim', 'Hossain', 'A', 30, 45000, 'Bangladesh', 75, 'Male'),
+('Ayesha', 'Begum', 'K', 22, 28000, 'Bangladesh', 85, 'Female'),
+('Fatema', 'Khatun', 'R', 27, 35000, 'Bangladesh', 90, 'Female'),
+('John', 'Doe', 'L', 35, 60000, 'USA', 70, 'Male'),
+('Jane', 'Smith', 'P', 29, 52000, 'UK', 88, 'Female'),
+('Ali', 'Khan', 'Z', 40, 70000, 'Pakistan', 65, 'Male'),
+('Sara', 'Ahmed', 'T', 26, 32000, 'UAE', 92, 'Female'),
+('David', 'Lee', 'J', 33, 55000, 'Canada', 78, 'Male'),
+('Maria', 'Garcia', 'S', 31, 48000, 'Spain', 83, 'Female');
+
+
 select * from Customers
-inner Join orders
-on id = customer_Id
+select *from Orders 
+
+----iNNER Join---
+return only the matching row for Both Table
+
+select *
+from Customers
+inner join Orders
+on Id.Customers = CustomerId.Orders
+
+
+---01---সব customers দেখাও তাদের orders সহ, কিন্তু শুধু সেই customers যারা order করেছ
+select 
+o.CustomerId,
+c.FirstName,
+c.Salary,
+c.Country,
+o.OrderDate,
+o.Sales
+from Customers c
+inner join Orders o 
+on c.Id = o.CustomerId
+----Use Inner Join-----
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
