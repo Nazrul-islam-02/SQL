@@ -101,6 +101,72 @@ full join Orders o
 on c.Id = o.CustomerId
 
 
+----LEFT ANTI JOIN কি?
+👉-----04--- Left table এর সেই rows বের করা, যাদের Right table-এ কোনো match নেই
+
+📌 সহজ ভাষায়:
+“যারা order দেয় নাই সেই customers”
+select 
+c.Id,
+c.FirstName,
+c.Age,
+c.Country,
+o.orderDate,
+o.Sales
+from Customers c
+left Join Orders o
+on c.Id = o.OrderId
+where o.OrderId IS NULL;
+
+
+----Right Anti Join---
+যেখানে কেবল মাত্র Right সাইট থাকবে 
+
+👉-------05-----“যে Orders গুলোর কোনো Customer নাই” (unmatched right)
+
+SELECT 
+    o.CustomerId,
+    c.Id,
+    c.FirstName,
+    c.Age,
+    c.Country,
+    o.OrderDate,
+    o.Sales
+FROM Customers c
+RIGHT JOIN Orders o
+ON c.Id = o.CustomerId
+WHERE c.Id IS NULL;
+
+
+
+
+
+---- FUll anti Join ---
+Returns only Rows that Dont match in either Table
+FULL ANTI JOIN কি?
+👉 দুই টেবিলের unmatched rows (যেগুলো একে অপরের সাথে match করে না) — সব বের করা
+📌 সহজ ভাষায়:
+Customers যাদের order নাই + Orders যাদের customer নাই
+SELECT 
+    
+    c.Id,
+    c.FirstName,
+    c.Age,
+    c.Country,
+    o.OrderDate,
+    o.Sales
+FROM Customers c
+full JOIN Orders o
+ON c.Id = o.CustomerId
+WHERE c.Id IS NULL
+   OR o.CustomerId IS NULL;
+
+
+
+
+
+
+
 
 
 
