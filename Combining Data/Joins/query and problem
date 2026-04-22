@@ -72,7 +72,19 @@ on c.Id = o.CustomerId
 
 
 
-
+-------02---Get all customers along with their orders, including orders without matching customers."---
+select 
+c.Id,
+c.FirstName,
+c.Salary,
+c.Country,
+o.OrderDate,
+o.Sales,
+o.CustomerId
+from Customers c
+right join Orders o 
+on c.Id = o.CustomerId
+-------Right Join-----
 
 
 
