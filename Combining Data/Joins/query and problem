@@ -87,10 +87,18 @@ on c.Id = o.CustomerId
 -------Right Join-----
 
 
-
-
-
-
+----03---Get all Customer and all orders even thirs no match
+select 
+c.Id,
+c.FirstName,
+c.Salary,
+c.Country,
+o.OrderDate,
+o.Sales,
+o.CustomerId
+from Customers c
+full join Orders o 
+on c.Id = o.CustomerId
 
 
 
