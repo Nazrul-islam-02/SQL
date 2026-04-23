@@ -3,3 +3,13 @@
 select year(getDate()) as Year,
   Month(getDate()) as Month,
   day(getDate()) as Day
+
+----👉 “Orders table থেকে OrderDate এর year, month এবং day কে text (name) আকারে বের করার জন্য DATENAME() function ব্যবহার করা।”
+select 
+orderDate,
+DATENAME(year, orderDate) AS Year,
+DATENAME(month, orderDate) AS Month,
+DATENAME(day, orderDate) AS Day
+from Orders
+
+
