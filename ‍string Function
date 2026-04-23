@@ -1,4 +1,117 @@
 
-1. Manipulation --------  a. Concate  b. Upper   c. Lower   d. trim    e. Replace
+               Use Eshop Database and customer Table
+
+
+       
+1. Manipulation --------  a. Concat  b. Upper   c. Lower   d. trim    e. Replace
 2. Calculation  --------- a. Len
 3. String Extraction -----a. Left   b. Right   c. SubString
+
+
+
+
+1.a. Concat --COmbines multiple string into one
+----01.--- get fullName use concat Function
+select Id,
+FirstName,
+LastName,
+CONCAT(FirstName,'  ',LastName) as FullName
+from Customers
+
+1.b) Upper
+select Id,
+FirstName,
+upper(FirstName) as UpperCaseName
+from Customers
+
+
+1.c) Lower
+select Id,
+FirstName,
+upper(FirstName) as UpperCaseName,
+lower(lastName) as LowerCaseName
+from Customers
+
+1. d) Trim
+🔹 TRIM কী?
+👉 TRIM ব্যবহার করা হয় string এর শুরু (left) এবং শেষ (right) থেকে extra space remove করার জন্য
+
+Basic Syntax
+TRIM(expression)
+
+Example
+SELECT TRIM('   Nazrul Islam   ') AS Result;
+👉 Output:
+Nazrul Islam
+
+1.E)
+REPLACE কী?
+👉 string এর ভিতরে থাকা কোনো character বা word change বা remove করার জন্য ব্যবহার হয়
+Syntax
+REPLACE(original_string, old_value, new_value)
+select REPLACE('12/11/2013','/','-') as useReplace
+
+
+
+2.a Len
+---01-- Find the length of FirstName for customer Table
+select 
+FirstName,
+len(FirstName) as LenghtOfFirstName
+from customers
+---02--“Customers table থেকে FirstName ও LastName এর length বের করে তাদের length এর পার্থক্য নির্ণয় করা।”
+select 
+FirstName,
+LastName,
+len(FirstName) as LenghtOfFirstName,
+len(LastName) as LenghtOfLastName,
+abs(len(FirstName) - len(LastName)) as Flag
+from customers
+
+
+---Left--
+LEFT Function
+👉 string এর শুরুর দিক (left side) থেকে নির্দিষ্ট সংখ্যক character নেয়
+Syntax:
+LEFT(column_name, number_of_characters)
+
+
+---RIGHT---
+RIGHT Function
+👉 string এর শেষ দিক (right side) থেকে character নেয়
+Syntax:
+RIGHT(column_name, number_of_characters)
+
+
+---“Customers table থেকে FirstName এর প্রথম ২টি এবং LastName এর শেষ ২টি অক্ষর নিয়ে একটি নতুন MixName তৈরি করা।--
+select 
+FirstName,
+LastName,
+CONCAT(left(FirstName,2),Right(LastName,2)) as MixName
+from Customers
+
+🔹 SUBSTRING কী?
+👉 string এর মাঝখান (any position) থেকে নির্দিষ্ট অংশ বের করার জন্য ব্যবহার হয়
+
+Syntax
+SUBSTRING(column_name, start_position, length)
+এখানে:start_position = কয় নম্বর position থেকে শুরু করবে (1 থেকে শুরু)
+length = কয়টা character নিবে
+
+SELECT SUBSTRING('Nazrul Islam', 2, 4) AS Result;
+Output:azru
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
