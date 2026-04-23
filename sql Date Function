@@ -1,0 +1,5 @@
+
+“বর্তমান তারিখ থেকে year, month এবং day আলাদা করে বের করার জন্য date functions ব্যবহার করা।”
+select year(getDate()) as Year,
+  Month(getDate()) as Month,
+  day(getDate()) as Day
