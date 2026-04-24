@@ -13,3 +13,19 @@ DATENAME(day, orderDate) AS Day
 from Orders
 
 
+🔹 EOMONTH() কী?
+👉 কোনো date এর মাসের শেষ দিন (End Of Month) বের করার জন্য ব্যবহার হয়
+----Syntax ---
+EOMONTH(start_date, offset)
+এখানে: start_date = যেই date থেকে হিসাব শুরু
+offset = কয় মাস আগের/পরের (optional)
+
+Basic Example
+SELECT EOMONTH('2026-04-23') AS EndOfMonth;
+output 2026-04-30
+
+Next Month
+SELECT EOMONTH(GETDATE(), 1);
+
+pervious Month
+select Eomonth(getdate(),-1)
