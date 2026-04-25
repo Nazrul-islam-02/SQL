@@ -1,0 +1,13 @@
+🔹 CASE Statement কী?
+👉 Condition check করে different result return করে
+👉 মানে: IF–ELSE logic SQL এ
+
+SELECT 
+    FirstName,
+    Score,
+    CASE 
+        WHEN Score >= 80 THEN 'Excellent'
+        WHEN Score >= 50 THEN 'Pass'
+        ELSE 'Fail'
+    END AS Result
+FROM Customers;
