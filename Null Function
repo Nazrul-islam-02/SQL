@@ -32,6 +32,26 @@ SELECT NULLIF(10, 10) AS Result;
 
 
 
+👉 “Customers table থেকে score এর মোট (SUM), গড় (AVG), এবং NULL value কে 0 ধরে adjusted average বের করা
+select 
+Id,firstName,
+score,
+sum(score) over() as Sum,
+avg(score) over() as avgScore,
+Coalesce(score,0) as NullRemove,
+AVG(Coalesce(score,0)) over() as NullRemoveAvg
+from Customers
+
+
+
+------👉 “Customers table থেকে এমনভাবে data sort করা যেখানে NULL score শেষে থাকবে, এজন্য CASE ব্যবহার করে custom ordering করা।”
+select 
+id,
+FirstName,
+Country,
+Score
+from Customers
+order by case When Score IS null then 1 else 0 end  , score
 
 
 
