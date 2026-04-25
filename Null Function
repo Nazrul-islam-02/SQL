@@ -1,0 +1,41 @@
+NULL কী?
+👉 NULL মানে কোনো value নেই / unknown value
+👉 এটা 0 বা empty string না ❗
+
+1️⃣ ISNULL()
+👉 NULL থাকলে default value দেয়
+Syntax:
+ISNULL(expression, replacement_value)
+
+
+Table Example
+SELECT 
+    FirstName,
+    ISNULL(LastName, 'Unknown') AS LastName
+FROM Customers;
+
+
+3️⃣ NULLIF()
+👉 দুইটা value same হলে NULL return করে
+
+Example:
+SELECT NULLIF(10, 10) AS Result;
+
+
+----Coalesce Function 
+👉 “একাধিক value থেকে প্রথম non-null value বের করার জন্য COALESCE function ব্যবহার করা।”
+🔥 Final Trick
+👉 COALESCE = “first available value finder”
+
+
+
+
+
+
+
+
+
+
+
+
+
