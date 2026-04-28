@@ -1,0 +1,55 @@
+🔹 Window Function কী?
+👉 এমন function যা প্রতিটা row রেখে calculation করে
+👉 মানে: row হারায় না (GROUP BY এর মতো collapse করে না)
+👉 Aggregate function + OVER() = Window Function
+
+🔹 OVER() কী?
+👉 এটা define করে কোন window (data set) এর উপর calculation হবে
+👉 সহজভাবে:
+কোন group?
+কোন order?
+👉 সব control করে OVER()
+
+
+🔥 OVER() এর Parts
+
+Part	                        কাজ
+PARTITION BY                	group তৈরি করে
+ORDER BY	                    sequence ঠিক করে
+(optional)                  	frame control (advanced)
+
+
+One Line Problem Statement
+👉 “প্রতিটি row বজায় রেখে নির্দিষ্ট group বা পুরো dataset এর উপর calculation করার জন্য window function এবং OVER() ব্যবহার করা।”
+
+
+---------01---👉 “Products table থেকে প্রতিটি ProductName অনুযায়ী মোট Quantity বের করে সেই মোট Quantity অনুযায়ী data descending order এ সাজানো।”
+select *,
+sum(Quantity) over(Partition by Productname) 
+from Products
+order by sum(Quantity) over(Partition by Productname) desc
+
+
+
+🔹 RANK() কী?
+👉 Ranking দেওয়ার জন্য ব্যবহার হয় (position based)
+👉 সাধারণত highest → lowest বা lowest → highest অনুযায়ী rank দেয়
+
+Syntax
+RANK() OVER (ORDER BY column DESC)
+
+“ডেটাকে নির্দিষ্ট order অনুযায়ী ranking দেওয়ার জন্য RANK() function ব্যবহার করা।”
+
+
+------01---“Customers table থেকে Score অনুযায়ী descending order এ সকল customer কে ranking দেওয়ার জন্য RANK() function ব্যবহার করা।”
+ SELECT 
+    FirstName,
+    Score,
+    country,
+    RANK() OVER( ORDER BY score desc) AS RankPosition
+FROM Customers;
+
+
+
+
+
