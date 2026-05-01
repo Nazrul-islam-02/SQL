@@ -1,0 +1,50 @@
+🔹 Stored Procedure কী?
+👉 Database এর ভিতরে stored SQL code block
+👉 একবার লিখে রাখো, পরে বারবার call করা যায়
+👉 👉 simpleভাবে:
+“Reusable SQL program”
+
+🔥 Basic Syntax
+CREATE PROCEDURE GetCustomers
+AS
+BEGIN
+    SELECT * FROM Customers;
+END;
+
+
+call করতে:
+EXEC GetCustomers;
+
+
+🔹 Parameter সহ Procedure
+
+CREATE PROCEDURE GetCustomerByCountry
+    @Country VARCHAR(50)
+AS
+BEGIN
+    SELECT * 
+    FROM Customers
+    WHERE Country = @Country;
+END;
+
+👉 call:
+EXEC GetCustomerByCountry 'Bangladesh';
+
+
+
+3️⃣ DML SP
+👉 INSERT / UPDATE / DELETE
+
+CREATE PROCEDURE AddCustomer
+    @Name VARCHAR(50),
+    @Score INT
+AS
+BEGIN
+    INSERT INTO Customers(FirstName, Score)
+    VALUES(@Name, @Score);
+END;
+exec AddCustomer @Name = 'Nazrul', @score = 99
+
+
+🔹 One Line Problem Statement
+👉 “Database logic reuse, performance বৃদ্ধি এবং security নিশ্চিত করার জন্য Stored Procedure ব্যবহার করা।”
