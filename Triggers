@@ -1,0 +1,62 @@
+SQL ট্রিগার কী? SQL ট্রিগার হলো এক ধরণের বিশেষ "stored procedure" 
+যা কোনো নির্দিষ্ট টেবিলে কোনো ঘটনা (event) ঘটলে স্বয়ংক্রিয়ভাবে কার্যকর বা রান হয় [১]।
+সাধারণত সাধারণ স্টোরড প্রসিডিউর আমাদের ম্যানুয়ালি চালাতে হয়,
+কিন্তু ট্রিগার ডেটাবেসে কোনো পরিবর্তনের সাথে সাথেই নিজে থেকে কাজ শুরু করে [১]।
+
+
+ট্রিগারের ধরণ: ট্রিগার মূলত তিন ধরণের হতে পারে [২]:
+DML Triggers: যখন কোনো টেবিলে ডেটা ইনসার্ট (Insert), আপডেট (Update) বা ডিলিট (Delete) করা হয়, তখন এটি কাজ করে।
+DDL Triggers: এটি স্কিমা পরিবর্তনের সময় (যেমন: Create, Alter বা Drop table) কাজ করে।
+Logon Triggers: এটি লগ-ইন ইভেন্টের সময় কার্যকর হয়
+
+
+অডিট লগের ক্ষেত্রে সাধারণত DML ট্রিগার ব্যবহার করা হয়, যা আবার দুই ধরণের হয়: After Triggers (ঘটনা ঘটার পরে কাজ করে) এবং Instead of Triggers (ঘটনা ঘটার সময় বা বদলে কাজ করে) [৩]।
+অডিট লগের প্রয়োজনীয়তা ও ব্যবহার: অডিট লগ হলো এমন একটি ব্যবস্থা যেখানে ডেটাবেসের সমস্ত পরিবর্তনের ইতিহাস রাখা হয়। এটি বিশেষ করে 'Employee' টেবিলের মতো সংবেদনশীল তথ্যের ক্ষেত্রে খুব গুরুত্বপূর্ণ [৩]। এর মাধ্যমে অডিটররা জানতে পারেন যে:
+কখন পরিবর্তন করা হয়েছে [৪]।
+কে এই পরিবর্তনটি করেছেন [৪]।
+ঠিক কী পরিবর্তন করা হয়েছে [৪]।
+কীভাবে এটি কাজ করে (উদাহরণ): ১. লগ টেবিল তৈরি: প্রথমে একটি আলাদা টেবিল (যেমন: sales_employee_logs) তৈরি করা হয় যেখানে পরিবর্তনের তথ্যগুলো জমা থাকবে [৬]। ২. ট্রিগার সেট করা: মূল টেবিলের (যেমন: employees) ওপর একটি ট্রিগার বসানো হয় [৭]। ৩. স্বয়ংক্রিয় এন্ট্রি: যখনই মূল টেবিলে নতুন কোনো কর্মী যোগ করা হয়, ট্রিগারটি স্বয়ংক্রিয়ভাবে inserted নামক একটি ভার্চুয়াল টেবিল থেকে তথ্য নিয়ে লগ টেবিলে একটি এন্ট্রি তৈরি করে দেয় [৭, ৮]।
+এর ফলে কোনো ইউজারকে আলাদা করে লগ এন্ট্রি করতে হয় না, পুরো প্রক্রিয়াটি অটোমেটেড বা স্বয়ংক্রিয়ভাবে সম্পন্ন হয় [৯, ১১]।
+
+
+
+
+🔹 🧾 Problem Statement (One Line)
+👉 “Customers table এ নতুন customer insert হলে তার তথ্য automatically CustomerLogInF log table এ সংরক্ষণ করার জন্য trigger তৈরি করা।”
+
+
+USE Eshopdb;
+
+-- 🔸 Log Table
+CREATE TABLE CustomerLogInF
+(
+    LogId INT IDENTITY(1,1) PRIMARY KEY,
+    CustomerId INT,
+    LogMessage VARCHAR(100),
+    LogDate DATETIME
+);
+
+
+-- 🔸 Trigger
+CREATE TRIGGER trg_AfterCustomerInsert
+ON dbo.Customers
+AFTER INSERT
+AS
+BEGIN
+    INSERT INTO CustomerLogInF (CustomerId, LogMessage, LogDate)
+    SELECT 
+        Id,
+        'New customer added with ID = ' + CAST(Id AS VARCHAR(20)),
+        GETDATE()
+    FROM inserted;
+END;
+
+-- 🔸 Test Insert
+INSERT INTO Customers 
+VALUES ('Nazrul', '', 'Islam', 26, 50000, 'Bangladesh', 89, 'Male');
+
+-- 🔸 Check Log
+SELECT * FROM CustomerLogInF;
+
+
+
