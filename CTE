@@ -19,4 +19,27 @@ Complex query readable করতে
 Subquery simplify করতে
 Recursive query করতে
 Multiple step calculation করতে
-Ranking/filtering করতে
+Ranking/filtering করত
+
+
+
+Updatable Common Table Expressions (CTE) in SQL Server
+SQL Server এ CTE (Common Table Expression) শুধু SELECT করার জন্য না—অনেক ক্ষেত্রে UPDATE, DELETE, INSERT করা যায়। এটাকেই বলা হয় Updatable CTE।
+
+Updatable CTE কী?
+👉 যখন আপনি একটি CTE তৈরি করে তার উপর সরাসরি UPDATE / DELETE করেন, তখন সেটাকে Updatable CTE বলে।
+CTE আসলে আলাদা table না—এটা base table-এর উপর কাজ করে, তাই update করলে মূল table update হয়।
+
+
+😊Recursive CTE হলো এমন একটি CTE (Common Table Expression) যেটা নিজেকেই repeatedly call করে।
+এটা mainly ব্যবহার হয়:
+Hierarchy Data
+Tree Structure
+Parent-Child Relation
+Employee Manager System
+Folder Structure
+Category/Subcategory
+
+
+
+
