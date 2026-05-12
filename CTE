@@ -1,0 +1,22 @@
+CTE in SQL Server (Common Table Expression)
+CTE হলো SQL Server এ temporary result set যেটা query এর ভিতরে define করা হয় এবং পরে সেই query তে ব্যবহার করা যায়।
+এটা অনেকটা temporary virtual table এর মতো কাজ করে।
+
+
+Basic Syntax
+WITH CTE_Name AS
+(
+    SELECT column1, column2
+    FROM TableName
+)
+SELECT *
+FROM CTE_Name;
+
+
+Why Use CTE?
+CTE ব্যবহার করা হয়:
+Complex query readable করতে
+Subquery simplify করতে
+Recursive query করতে
+Multiple step calculation করতে
+Ranking/filtering করতে
