@@ -15,8 +15,33 @@ Isolation (বিচ্ছিন্নতা): একসাথে একাধ�
 Durability (স্থায়িত্ব): একবার ডাটা Commit হয়ে গেলে, সিস্টেম ক্র্যাশ করলেও ডাটা চিরতরে সেভ থাকবে।
 
 
+প্রধান কমান্ডসমূহট্রানজেকশন কন্ট্রোল করার জন্য ৩টি মূল কমান্ড ব্যবহার করা হয়:
+BEGIN TRANSACTION: ট্রানজেকশন শুরু করার সংকেত দেয়।
+COMMIT TRANSACTION: সব কাজ সফল হলে ডাটা ডাটাবেজে স্থায়ীভাবে সেভ করে।
+ROLLBACK TRANSACTION: কোনো ভুল হলে সব পরিবর্তন বাতিল করে ডাটাকে আগের অবস্থায় ফিরিয়ে নেয়।
 
 
+BEGIN TRANSACTION;
+BEGIN TRY
+    -- ১. প্রথম অ্যাকাউন্ট থেকে ৫০০ টাকা কমানো হলো
+    UPDATE Accounts 
+    SET Balance = Balance - 500 
+    WHERE AccountID = 1;
+
+    -- ২. দ্বিতীয় অ্যাকাউন্টে ৫০০ টাকা বাড়ানো হলো
+    UPDATE Accounts 
+    SET Balance = Balance + 500 
+    WHERE AccountID = 2;
+
+    -- দুটি কাজই সফল হলে ডাটা সেভ হবে
+    COMMIT TRANSACTION;
+    PRINT 'Transaction Successful!';
+END TRY
+BEGIN CATCH
+    -- কোনো একটি লাইনে ভুল হলে পুরো কাজ বাতিল হয়ে যাবে
+    ROLLBACK TRANSACTION;
+    PRINT 'Error Occurred! Transaction Rolled Back.';
+END CATCH;
 
 
 
