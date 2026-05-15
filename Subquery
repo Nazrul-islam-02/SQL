@@ -1,0 +1,24 @@
+SQL এ Subquery হলো এমন একটি query যেটা আরেকটি query-এর ভিতরে লেখা হয়।
+মানে, একটি query-এর result অন্য query ব্যবহার করে।
+
+Subquery কী?
+একটি query-এর ভিতরে আরেকটি query।
+
+1. প্রশ্ন: সেই সব Customer দেখাও যাদের Salary Average এর থেকে বেশি
+SELECT Name, Salary
+FROM Customers
+WHERE Salary >
+(
+    SELECT AVG(Salary)
+    FROM Customers
+);
+
+2 প্রশ্ন: সেই সব Customer দেখাও যাদের Salary Average এর থেকে বেশি also show average salary
+select * 
+from(
+       select *,
+       AVG(salary) over() as average
+       from Customers
+    )t
+where Salary > average
+
