@@ -22,3 +22,47 @@ from(
     )t
 where Salary > average
 
+
+3. সব customer এর information দেখাও এবং প্রত্যেক customer কতটি order করেছে তা বের করো।
+যেসব customer কোনো order করেনি তাদেরকেও show করতে হবে।
+
+select * from customers c
+left join 
+(select 
+customerId,
+count(*) as totalOrders
+from Orders
+group by CustomerId) o
+on c.id = o.customerId
+
+
+4. Display customers along with their total number of orders, considering only customers who have placed orders.”
+SELECT * 
+FROM Customers c
+INNER JOIN 
+(
+    SELECT 
+        CustomerId,
+        COUNT(*) AS totalOrders
+    FROM Orders
+    GROUP BY CustomerId
+) o
+ON c.Id = o.CustomerId;
+
+
+
+Problem Statement
+“Retrieve all orders placed by customers who are from Bangladesh.”
+
+বাংলায়
+যেসব customer এর country = 'Bangladesh', তাদের সব orders দেখাও।
+SELECT *
+FROM Orders
+WHERE CustomerId IN
+(
+    SELECT Id
+    FROM Customers
+    WHERE Country = 'Bangladesh'
+);
+
+
